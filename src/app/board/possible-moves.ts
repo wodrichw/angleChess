@@ -4,7 +4,16 @@ export class PossibleMoves {
     private possibleMoves: number[];
 
 
+    /* ********Big Kahuna Functions*************************** */
+    buildPossibleMoves(pieces: string[][], selectedPiece: number): number[]{
+        this.setSelectedPiece(selectedPiece);
+        this.setPossibleMovesToNull();
+        this.setPieces(pieces);
+        this.searchPossibleMoves();
+        return this.possibleMoves;
+    }
     
+    /* *******Functions for Generatign Possible Moves********** */
     searchPossibleMoves(): void {
         switch (this.pieces[this.selectedPiece][0][0]) {
             case 'p':
@@ -174,5 +183,21 @@ export class PossibleMoves {
         } else {
             return 'b';
         }
+    }
+
+
+
+    /* **********Functions for Interacting with possible moves data********** */
+    setPossibleMovesToNull(): void{
+        this.possibleMoves = null;
+    }
+    setPieces(pieces: string[][]){
+        this.pieces = pieces;
+    }
+    getPossibleMoves(): number[]{
+        return this.possibleMoves;
+    }
+    setSelectedPiece(piece: number): void{
+        this.selectedPiece = piece;
     }
 }
